@@ -46,40 +46,40 @@
         </li>
         <!-- Add Food link (conditionally shown for authenticated users) -->
         <% if user_signed_in? %>
-        <li
-          class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-          data-te-nav-item-ref>
-          <a
-            class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-            href="<%= new_food_path %>"
-            data-te-nav-link-ref
-            >Add Food</a>
-        </li>
+          <li
+            class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
+            data-te-nav-item-ref>
+            <a
+              class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
+              href="<%= new_food_path %>"
+              data-te-nav-link-ref
+              >Add Food</a>
+          </li>
         <% end %>
 
         <!-- Add Recipes link (conditionally shown for authenticated users) -->
         <% if user_signed_in? %>
-        <li
-          class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-          data-te-nav-item-ref>
-          <a
-            class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-            href="<%= new_recipe_path %>"
-            data-te-nav-link-ref
-            >Add Recipes</a>
-        </li>
+          <li
+            class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
+            data-te-nav-item-ref>
+            <a
+              class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
+              href="<%= recipes_path %>"
+              data-te-nav-link-ref
+              >Recipes</a>
+          </li>
         <% end %>
         <!-- Add Inventory link (conditionally shown for authenticated users) -->
         <% if user_signed_in? %>
-        <li
-          class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-          data-te-nav-item-ref>
-          <a
-            class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-            href="<%= new_inventory_path %>"
-            data-te-nav-link-ref
-            >Add Inventory</a>
-        </li>
+          <li
+            class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
+            data-te-nav-item-ref>
+            <a
+              class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
+              href="<%= inventories_path %>"
+              data-te-nav-link-ref
+              >Inventories</a>
+          </li>
         <% end %>
         <!-- Register link (conditionally shown for unauthenticated users) -->
         <% unless user_signed_in? %>
@@ -107,15 +107,15 @@
         <% end %>
         <!-- Log out link (conditionally shown for authenticated users) -->
         <% if user_signed_in? %>
-        <li
-          class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-          data-te-nav-item-ref>
-          <a
-            class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-            href="<%= users_sign_out_path %>"
-            data-te-nav-link-ref
-            >Log out</a>
-        </li>
+          <li
+            class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
+            data-te-nav-item-ref>
+            <a
+              class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
+              href="<%= users_sign_out_path %>"
+              data-te-nav-link-ref
+              >Log out</a>
+          </li>
         <% end %>
       </ul>
     </div>
