@@ -1,0 +1,102 @@
+<h1>
+    <%= @recipe.name %>
+</h1>
+<p>
+    Preparation time: <%= @recipe.preparation_time %> hour
+</p>
+
+<%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
+    <div class="field">
+        <%= f.label :public, class:'checkbox' %>
+            <%= f.check_box :public, class:'mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem]
+                bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full
+                before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5
+                after:w-5 after:rounded-full after:border-none after:bg-neutral-100
+                after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)]
+                after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary
+                checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem]
+                checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none
+                checked:after:bg-primary
+                checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)]
+                checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-['']
+                hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12]
+                focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)]
+                focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1]
+                focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-['']
+                checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem]
+                checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]
+                checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600
+                dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary
+                dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)]
+                dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]', onclick: 'this.form.submit();' %>
+    </div>
+    <div class="field">
+        <%= f.submit " " %>
+    </div>
+    <% end %>
+<p>
+    Cooking time: <%= @recipe.cooking_time %> hours
+</p>    
+
+<p>Description: <%= @recipe.description %></p>
+
+
+<div class="flex gap-5">
+    <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" id="open-popup">Generate shopping
+        list</button>
+    <%= link_to new_recipe_food_path(recipe_id: @recipe.id) do %>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Ingredient</button>
+    <% end %>
+</div>
+
+<div id="recipe-popup" class="fixed inset-0 justify-center flex items-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-8 rounded-lg h-1/2 w-1/2 ">
+        <!-- Popup content goes here -->
+        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" id="close-popup">X</button>
+        <h2>Generate shopping list</h2>
+        <p>Chose an inventory to use</p>
+        <select name="inventory" id="inventory">
+            <option value="0">--Select an inventory--</option>
+            <option value="1">Inventory 1</option>
+            <option value="2">Inventory 2</option>
+            <option value="3">Inventory 3</option>
+        </select>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" id="generate-shopping-list">Generate</button>
+    </div>
+</div>
+
+
+<div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+                <table class="min-w-full text-left text-sm font-light">
+                    <thead class="border-b font-medium dark:border-neutral-500">
+                        <tr>
+                            <th scope="col" class="px-6 py-4">Food</th>
+                            <th scope="col" class="px-6 py-4">Quantity</th>
+                            <th scope="col" class="px-6 py-4">Value</th>
+                            <th scope="col" class="px-6 py-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @recipe.recipe_foods.each do |food| %>
+                        <tr
+                            class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                            <td class="whitespace-nowrap px-6 py-4"><%= food.food.name %></td>
+                            <td class="whitespace-nowrap px-6 py-4"><%= food.quantity %> <%= food.food.measurement_unit %></td>
+                            <td class="whitespace-nowrap px-6 py-4">$ <%= food.food.price*food.quantity %></td>
+                            <td class="whitespace-nowrap px-6 py-4 cursor-pointer">
+                                <%= form_with model: food, url: recipe_food_path(food), method: :delete do |form| %>
+                                <%= form.submit "Remove" %>
+                                <% end %>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+/* Show the popup when the URL fragment matches the popup's ID */
+#recipe-popup:target {
+  display: flex;
+}

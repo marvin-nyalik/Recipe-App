@@ -1,16 +1,21 @@
-<h1>Hello <%= @user.name %></h1>
-<div class="recipe-container">
-  <div class="recipe">
-    <div class="info">
-      <h2> Recipe </h2>
+<h1>Welcome To Recipe Page</h1>
+<%= link_to "Add" , new_recipe_path %>
 
-      <%= form_with model:@recipe, url: recipes_path, method: :delete do |form| %>
-      <%= form.submit "Remove" %>
+  <div class="recipe-container">
+    <% @recipes.each do |recipe| %>
+      <div class="recipe">
+        <%= link_to recipe_path(recipe) do %>
+          <div class="info">
+            <h2>
+              <%= recipe.name %>
+            </h2>
+            <p> Description: <%= recipe.description %>
+            </p>
+          </div>
+          <% end %>
+            <%= form_with model: recipe, url: recipe_path(recipe), method: :delete do |form| %>
+              <%= form.submit "Remove" %>
+                <% end %>
+      </div>
       <% end %>
-
-    </div>
-    <div class="description">
-      <p> This is the recipe description </p>
-    </div>
   </div>
-</div>

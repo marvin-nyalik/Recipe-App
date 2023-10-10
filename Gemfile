@@ -69,3 +69,5 @@ group :test do
 end
 
 gem 'rspec', '~> 3.12'
+
+gem 'tailwindcss-rails', '~> 2.0'
