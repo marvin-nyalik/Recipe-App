@@ -11,7 +11,15 @@ Rails.application.routes.draw do
         registrations: 'users/registrations',
         confirmations: 'users/confirmations'
   }
+  
+  resources :foods, only: [:index, :create, :destroy, :new]
 
+  devise_scope :user do
+    get '/users/sign_out', to: 'devise/sessions#destroy'
+    # destroy_user_session_path << Required Later
+    # root to: 'recipes#public_recipes' << Required Later
+  end
+  
   # devise_for :users
   # Defines the root path route ("/")
   root "recipes#public_recipes"
