@@ -1,0 +1,17 @@
+<h1>Recipe Food Create</h1>
+
+<%= form_with model: [@recipe, @recipe_food], url: recipe_foods_path(@recipe), method: :post do |form| %>
+    <%= hidden_field_tag :recipe_id, @recipe.id %>
+
+        <div class="field">
+            <%= form.label :food_id %>
+                <%= form.collection_select :food_id, Food.all, :id, :name %>
+        </div>
+
+        <div class="field">
+            <%= form.label :quantity %>
+                <%= form.number_field :quantity %>
+        </div>
+
+        <%= form.submit "Create Recipe Food" %>
+            <% end %>
