@@ -1,7 +1,7 @@
 <nav
   class="relative flex w-full flex-nowrap items-center justify-between bg-neutral-800 py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 lg:flex-wrap lg:justify-start lg:py-4"
   data-te-navbar-ref>
-  <div class="flex w-full flex-wrap items-center justify-between px-3">
+  <div class="flex w-full flex-wrap items-center justify between px-3">
     <!-- Hamburger button for mobile view -->
     <button
       class="block border-0 bg-transparent px-2 text-neutral-300 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
@@ -20,7 +20,7 @@
           class="h-7 w-7">
           <path
             fill-rule="evenodd"
-            d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+            d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75.75.75.75z"
             clip-rule="evenodd" />
         </svg>
       </span>
@@ -42,10 +42,10 @@
           <a
             class="text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
             aria-current="page"
-            href="<%= root_path %>">Home</a
-          >
+            href="<%= root_path %>">Home</a>
         </li>
-        <!-- Add Food link -->
+        <!-- Add Food link (conditionally shown for authenticated users) -->
+        <% if user_signed_in? %>
         <li
           class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
           data-te-nav-item-ref>
@@ -53,10 +53,12 @@
             class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
             href="<%= new_food_path %>"
             data-te-nav-link-ref
-            >Add Food</a
-          >
+            >Add Food</a>
         </li>
-        <!-- Recipes link -->
+        <% end %>
+
+        <!-- Add Recipes link (conditionally shown for authenticated users) -->
+        <% if user_signed_in? %>
         <li
           class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
           data-te-nav-item-ref>
@@ -64,10 +66,11 @@
             class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
             href="<%= new_recipe_path %>"
             data-te-nav-link-ref
-            >Add Recipes</a
-          >
+            >Add Recipes</a>
         </li>
-        <!-- Inventories link -->
+        <% end %>
+        <!-- Add Inventory link (conditionally shown for authenticated users) -->
+        <% if user_signed_in? %>
         <li
           class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
           data-te-nav-item-ref>
@@ -75,11 +78,11 @@
             class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
             href="<%= new_inventory_path %>"
             data-te-nav-link-ref
-            >Add Inventory</a
-          >
+            >Add Inventory</a>
         </li>
-
-        <!-- Register link -->
+        <% end %>
+        <!-- Register link (conditionally shown for unauthenticated users) -->
+        <% unless user_signed_in? %>
         <li
           class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
           data-te-nav-item-ref>
@@ -87,11 +90,11 @@
             class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
             href="<%= new_user_registration_path %>"
             data-te-nav-link-ref
-            >Register</a
-          >
+            >Register</a>
         </li>
-        
-        <!-- Log in link -->
+        <% end %>
+        <!-- Log in link (conditionally shown for unauthenticated users) -->
+        <% unless user_signed_in? %>
         <li
           class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
           data-te-nav-item-ref>
@@ -99,11 +102,11 @@
             class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
             href="<%= new_user_session_path %>"
             data-te-nav-link-ref
-            >Log in</a
-          >
+            >Log in</a>
         </li>
-
-        <!-- Log out link -->
+        <% end %>
+        <!-- Log out link (conditionally shown for authenticated users) -->
+        <% if user_signed_in? %>
         <li
           class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
           data-te-nav-item-ref>
@@ -111,9 +114,9 @@
             class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
             href="<%= users_sign_out_path %>"
             data-te-nav-link-ref
-            >Log out</a
-          >
+            >Log out</a>
         </li>
+        <% end %>
       </ul>
     </div>
   </div>
