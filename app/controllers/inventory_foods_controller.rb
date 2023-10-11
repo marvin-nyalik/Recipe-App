@@ -27,7 +27,6 @@ class InventoryFoodsController < ApplicationController
     end
   end
 
-
   private
 
   def inventory_food_params
