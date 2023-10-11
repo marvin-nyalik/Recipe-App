@@ -17,7 +17,6 @@
                     </thead>
                     <tbody>
                     <% @inventory.inventory_foods.each do |food| %>
-                      <% if food.deleted_at.nil? %>
                         <tr
                           class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover-bg-neutral-600"
                         >
@@ -30,7 +29,6 @@
                           </td>
                         </tr>
                       <% end %>
-                    <% end %>
                     </tbody>
                 </table>
             </div>

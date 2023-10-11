@@ -57,13 +57,16 @@
         <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" id="close-popup">X</button>
         <h2>Generate shopping list</h2>
         <p>Chose an inventory to use</p>
-        <select name="inventory" id="inventory">
-            <option value="0">--Select an inventory--</option>
-            <option value="1">Inventory 1</option>
-            <option value="2">Inventory 2</option>
-            <option value="3">Inventory 3</option>
-        </select>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" id="generate-shopping-list">Generate</button>
+        <%= form_with method: :post do |form| %>
+            <div class="field">
+                <%= form.label :inventory_id %>
+                    <%= form.collection_select :inventory_id, Inventory.all, :id, :name %>
+            </div>
+            <div class="actions">
+                <%= form.submit "Generate" , class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+            </div>
+        <% end %>
+
     </div>
 </div>
 <% end %>
@@ -102,4 +105,3 @@
         </div>
     </div>
 </div>
-
