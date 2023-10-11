@@ -1,13 +1,12 @@
-<div class="user-links"> <%= link_to 'Log In', new_user_session_path %> <%= link_to 'Register', new_user_registration_path %> </div>
-<div class="recipe-container">
-  <div class="recipe">
-    <div class="info">
-      <h2> Recipe Title </h2>
-      <h4> By Author </h4>
-    </div>
-    <div class="description">
-      <p> Total food Items </p>
-      <p> Total Price </p>
-    </div>
-  </div>
+<div class="public-recipes">
+  <% @public_recipes.each do |recipe| %>
+    <%= link_to recipe_path(recipe) do %>
+      <h2 class="title"><%= recipe.name %></h2>
+      <p>By: <%= recipe.user.name %></p>
+      <div class="description">
+        <p>Food Items Count: <%= recipe.recipe_foods.count %></p>
+        <p>Total Price: $<%= recipe.recipe_foods.sum { |rf| rf.quantity * rf.food.price } %></p>
+      </div>
+    <% end %>
+  <% end %>
 </div>
