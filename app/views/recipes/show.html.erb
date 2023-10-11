@@ -57,16 +57,18 @@
         <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" id="close-popup">X</button>
         <h2>Generate shopping list</h2>
         <p>Chose an inventory to use</p>
-        <%= form_with method: :post do |form| %>
-            <div class="field">
-                <%= form.label :inventory_id %>
-                    <%= form.collection_select :inventory_id, Inventory.all, :id, :name %>
-            </div>
-            <div class="actions">
-                <%= form.submit "Generate" , class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
-            </div>
-        <% end %>
+        <%= form_tag(shopping_list_path, method: :get) do %>
+            <%= hidden_field_tag :recipe_id, @recipe.id %>
 
+            <div class="field">
+              <%= label_tag :inventory_id %>
+              <%= select_tag :inventory_id, options_for_select(Inventory.all.pluck(:name, :id)) %>
+            </div>
+          
+            <div class="actions">
+              <%= submit_tag 'Generate', class: 'bg-blue-500 text-white px-4 py-2 rounded hover-bg-blue-600' %>
+            </div>
+          <% end %>          
     </div>
 </div>
 <% end %>
@@ -82,7 +84,9 @@
                             <th scope="col" class="px-6 py-4">Food</th>
                             <th scope="col" class="px-6 py-4">Quantity</th>
                             <th scope="col" class="px-6 py-4">Value</th>
-                            <th scope="col" class="px-6 py-4">Actions</th>
+                            <% if user_signed_in? %>
+                                <th scope="col" class="px-6 py-4">Actions</th>
+                            <% end %>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,8 +97,10 @@
                             <td class="whitespace-nowrap px-6 py-4"><%= food.quantity %> <%= food.food.measurement_unit %></td>
                             <td class="whitespace-nowrap px-6 py-4">$ <%= food.food.price*food.quantity %></td>
                             <td class="whitespace-nowrap px-6 py-4 cursor-pointer">
-                                <%= form_with model: food, url: recipe_food_path(food), method: :delete do |form| %>
-                                <%= form.submit "Remove" %>
+                                <% if user_signed_in? %>
+                                    <%= form_with model: food, url: recipe_food_path(food), method: :delete do |form| %>
+                                        <%= form.submit "Remove" %>
+                                    <% end %>
                                 <% end %>
                             </td>
                         </tr>

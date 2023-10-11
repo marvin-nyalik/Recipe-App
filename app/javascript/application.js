@@ -2,7 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('turbo:load', function () {
   // Open Popup
   const openPopupButton = document.getElementById('open-popup');
   const recipePopup = document.getElementById('recipe-popup');

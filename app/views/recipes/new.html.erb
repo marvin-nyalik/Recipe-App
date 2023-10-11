@@ -7,11 +7,11 @@
     </p>
     <p>
         <%= form.label :preparation_time %><br>
-            <%= form.text_field :preparation_time %>
+            <%= form.number_field :preparation_time, step: '0.01' %>
     </p>
     <p>
         <%= form.label :cooking_time %><br>
-            <%= form.text_field :cooking_time %>
+        <%= form.number_field :cooking_time, step: '0.01' %>
     </p>
     <p>
         <%= form.label :description %><br>

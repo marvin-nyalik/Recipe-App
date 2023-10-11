@@ -33,12 +33,41 @@ class RecipesController < ApplicationController
     @recipe.toggle!(:public)
     return unless @recipe.save
 
-    redirect_to recipe_path, notice: 'Recipe was successfully updated.'
+    redirect_to recipe_path, notice: 'Recipe privacy updated.'
   end
 
   def public_recipes
     @public_recipes = Recipe.includes(:user, recipe_foods: :food).where(public: true)
   end
+
+  def shopping_list
+    @recipe = Recipe.find(params[:recipe_id])
+    @inventory = Inventory.find(params[:inventory_id])
+
+    @shopping_list = []
+    @total_value = 0
+
+    @recipe.recipe_foods.each do |recipe_food|
+      inventory_food = @inventory.inventory_foods.find_by(food: recipe_food.food)
+
+      if inventory_food.nil?
+        quantity_to_buy = recipe_food.quantity
+        total_price = quantity_to_buy * recipe_food.food.price
+      elsif inventory_food.quantity < recipe_food.quantity
+        quantity_to_buy = recipe_food.quantity - inventory_food.quantity
+        total_price = quantity_to_buy * recipe_food.food.price
+      else
+        quantity_to_buy = 0
+        total_price = 0
+      end
+
+      @shopping_list << [recipe_food.food.name, quantity_to_buy, total_price]
+      @total_value += total_price
+    end
+
+    @missing_foods = @recipe.recipe_foods.count - @shopping_list.size
+  end
+
 
   private
 
