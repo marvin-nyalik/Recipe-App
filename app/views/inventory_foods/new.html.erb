@@ -1,0 +1,17 @@
+<h1>Create Inventory Food</h1>
+
+<%= form_with model: [@inventory, @inventory_food], url: inventory_inventory_foods_path(params[:inventory_id]) do |form| %>
+    <%= hidden_field_tag :inventory_id, @inventory.id %>
+
+        <div class="field">
+            <%= form.label :food_id %>
+                <%= form.collection_select :food_id, Food.all, :id, :name %>
+        </div>
+
+        <div class="field">
+            <%= form.label :quantity %>
+                <%= form.number_field :quantity %>
+        </div>
+
+        <%= form.submit "Create Inventory Food" %>
+            <% end %>

@@ -1,0 +1,19 @@
+<div class="new-inventory">
+  <h2 class="headline">Add Inventory</h2>
+  <div class="new-body">
+  <%= form_with model: @inventory, url: inventories_path do |f| %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description, rows: 4 %>
+    </div>
+  
+    <%= f.submit "Add Inventory", class: "submitin" %>
+  
+    <% end %>
+  </div>
+</div>

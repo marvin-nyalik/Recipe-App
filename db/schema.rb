@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_10_080926) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description", null: false
     t.index ["user_id"], name: "index_inventories_on_user_id"
   end
 

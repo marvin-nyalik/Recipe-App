@@ -1,0 +1,24 @@
+<div class="inventories">
+  <div class="new-link">
+    <%= link_to 'Create New Inventory', new_inventory_path %>
+  </div>
+
+  <% @inventories.each do |inv| %>
+    <div class="inventory">
+      <%= link_to inventory_path(inv), class: "inventory-link" do %>
+        <div class="header">
+          <h2><%= inv.name %></h2>
+        </div>
+        <div class="description">
+          <p><%= inv.description %></p>
+        </div>
+      <% end %>
+
+      <div class="remove-button">
+        <%= form_with model: inv, url: inventory_path(inv), method: :delete do |form| %>
+          <%= form.submit "Remove" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
