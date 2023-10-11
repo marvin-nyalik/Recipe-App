@@ -1,6 +1,6 @@
 class FoodsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @food = Food.new(food_params)
 
