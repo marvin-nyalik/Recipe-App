@@ -5,7 +5,7 @@ class FoodsController < ApplicationController
     @food = Food.new(food_params)
 
     if @food.save
-      redirect_to recipes_path, notice: 'Food successfully added'
+      redirect_to new_food_path, notice: 'Food successfully added'
     else
       render :new, notice: 'Failed'
     end

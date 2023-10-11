@@ -12,10 +12,10 @@
             <p> Description: <%= recipe.description %>
             </p>
           </div>
-          <% end %>
-            <%= form_with model: recipe, url: recipe_path(recipe), method: :delete do |form| %>
-              <%= form.submit "Remove" %>
-                <% end %>
+        <% end %>
+        <%= form_with model: recipe, url: recipe_path(recipe), method: :delete do |form| %>
+          <%= form.submit "Remove" %>
+        <% end %>
       </div>
-      <% end %>
+    <% end %>
   </div>

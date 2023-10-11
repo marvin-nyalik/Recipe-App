@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
     
   get '/public_recipes', to:'recipes#public_recipes', as: :public_recipes
+  get '/shopping_list', to:'recipes#shopping_list', as: :shopping_list
 
   devise_for :users, controllers: {
         registrations: 'users/registrations',
