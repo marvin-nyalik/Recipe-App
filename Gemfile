@@ -71,3 +71,5 @@ end
 gem 'rspec', '~> 3.12'
 
 gem 'tailwindcss-rails', '~> 2.0'
+
+gem 'htmlbeautifier', '~> 1.4'
