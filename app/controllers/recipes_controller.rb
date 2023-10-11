@@ -68,7 +68,6 @@ class RecipesController < ApplicationController
     @missing_foods = @recipe.recipe_foods.count - @shopping_list.size
   end
 
-
   private
 
   def recipe_params
