@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   resources :recipe_foods, only: [:new, :create, :destroy]
   resources :inventories, only: [:index, :create, :destroy, :new]
   
+  resources :inventories, only: [:create, :index, :show, :destroy, :new] do
+    resources :inventory_foods, only: [:new, :create]
+  end
+  
+  resources :foods, only: [:create, :destroy]
   get '/public_recipes', to:'recipes#public_recipes', as: :public_recipes
 
   devise_for :users, controllers: {
