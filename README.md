@@ -154,7 +154,7 @@ it will run the the server on ```localhost:3000```
 👤 **Marvin Otieno**
 
 - [GitHub](https://github.com/marvin-nyalik)
-- [LinkedIn](https://linkedin.com/in/marvin-otieno/)
+- [WellFound](https://wellfound.com/u/marvin-otieno)
 - [Twitter](https://twitter.com/NyalikMarvin)
 
 👤 **Ansar Ibrahim**
