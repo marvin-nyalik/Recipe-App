@@ -133,7 +133,10 @@ it will install the required gemfile for running the project
 to use this project:
 
 ```ruby
-   bin/rails server
+   rails server -p 3000
+```
+```
+  rails tailwindcss:watch
 ```
 
 it will run the the server on ```localhost:3000```
