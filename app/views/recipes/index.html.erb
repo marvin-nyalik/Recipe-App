@@ -21,10 +21,12 @@
             </span>
           </p>
           <% end %>
+          <% if can? :destroy, recipe %>
             <%= form_with model: recipe, url: recipe_path(recipe), method: :delete, class: "mt-3 md:mt-0" do |form| %>
               <%= form.submit "Remove" ,
                 class: "px-3 md:px-4 py-1 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg cursor-pointer"
                 %>
+                <% end %>
                 <% end %>
       </div>
       <% end %>

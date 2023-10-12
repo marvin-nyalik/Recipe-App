@@ -1,3 +1,4 @@
+<% if can? :read, @inventory%>
 <div class="show-inventory max-w-3xl mx-auto mt-8 bg-white p-4 rounded-lg shadow-md">
   <h2 class="text-2xl font-semibold text-blue-500 mb-4"><%= @inventory.name %></h2>
   <div class="food-add">
@@ -12,7 +13,9 @@
                         <tr>
                             <th scope="col" class="px-6 py-3">Food</th>
                             <th scope="col" class="px-6 py-3">Quantity</th>
-                            <th scope="col" class="px-6 py-3">Actions</th>
+                            <% if can? :destroy, @inventory %>
+                              <th scope="col" class="px-6 py-3">Actions</th>
+                            <% end %>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,8 +26,10 @@
                           <td class="whitespace-nowrap px-6 py-4"><%= food.food.name %></td>
                           <td class="whitespace-nowrap px-6 py-4"><%= food.quantity %> <%= food.food.measurement_unit %></td>
                           <td class="whitespace-nowrap px-6 py-4 cursor-pointer">
+                          <% if can? :destroy, @inventory %>
                           <%= form_with(model: food, url: inventory_food_path(food), method: :delete) do |form| %>
                             <%= form.submit "Remove", class: "text-blue-500 hover:underline" %>
+                          <% end %>
                           <% end %>
                           </td>
                         </tr>
@@ -36,3 +41,4 @@
     </div>
   </div>
 </div>
+<% end %>

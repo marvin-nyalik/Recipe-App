@@ -1,3 +1,4 @@
+<% if can? :read, @recipe %>
 <div class="container mx-auto p-4">
   <div class="bg-white p-6 rounded-lg shadow-md mt-4 lg:w-1/2 mx-auto">
     <div class="bg-slate-400 p-6 text-slate-900 flex justify-center items-center flex-col">
@@ -9,11 +10,13 @@
       </p>
       <div class="flex items-center justify-end space-x-4">
         <% if user_signed_in? %>
-          <%= form_for @recipe, url: recipe_path(@recipe), method: :patch do |f| %>
+          <%= form_for @recipe, url: update_recipe_privacy_recipe_path(@recipe), method: :patch do |f| %>
+            <% if can? :update, @recipe %>
             <div class="field mt-2 flex items-center space-x-3">
               <div class="text-lg font-medium text-gray-800">Public</div>
               <%= f.check_box :public, class: 'toggle-checkbox', onclick: 'this.form.submit();' %>
             </div>
+            <% end %>
             <div class="field">
               <%= f.submit "" %>
             </div>
@@ -26,8 +29,8 @@
       <p class="text-xl mt-4">
         Description: <%= @recipe.description %>
       </p>
-      <% if user_signed_in? %>
-        <div class="flex gap-5 mt-4 bg-slate-100 p-6 rounded-lg shadow-md">
+      <% if can? :update, @recipe %>
+      <div class="flex gap-5 mt-4 bg-slate-100 p-6 rounded-lg shadow-md">
           <button class="bg-blue-500 text-white px-4 py-2 rounded text-xs lg:text-base hover:bg-blue-600" id="open-popup">Generate Shopping List</button>
           <%= link_to new_recipe_food_path(recipe_id: @recipe.id) do %>
             <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-xs lg:text-base">Add Ingredient</button>
@@ -61,7 +64,7 @@
           <th scope="col" class="px-6 py-4">Food</th>
           <th scope="col" class="px-6 py-4">Quantity</th>
           <th scope="col" class="px-6 py-4">Value</th>
-          <% if user_signed_in? %>
+          <% if can? :destroy, @recipe %>
             <th scope="col" class="px-6 py-4">Actions</th>
           <% end %>
         </tr>
@@ -73,7 +76,7 @@
             <td class="whitespace-nowrap px-6 py-4"><%= "#{food.quantity} #{food.food.measurement_unit}" %></td>
             <td class="whitespace-nowrap px-6 py-4">$<%= food.food.price * food.quantity %></td>
             <td class="whitespace-nowrap px-6 py-4 cursor-pointer">
-              <% if user_signed_in? %>
+              <% if can? :destroy, @recipe %>
                 <%= form_with model: food, url: recipe_food_path(food), method: :delete do |form| %>
                   <%= form.submit "Remove", class: "px-4 py-2 bg-red-500 hover-bg-red-600 text-white font-medium rounded cursor-pointer" %>
                 <% end %>
@@ -88,3 +91,6 @@
 
   </div>
 </div>
+<% else %>
+ <%= link_to 'See Public Recipe', public_recipes_path %>
+<% end %>

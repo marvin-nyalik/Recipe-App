@@ -1,5 +1,10 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[public_recipes show]
+  before_action :set_ability
+
+  def set_ability
+    @ability = Ability.new(current_user)
+  end
 
   def index
     @recipes = Recipe.where(user_id: current_user.id)
@@ -23,17 +28,29 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def update
+    @recipe = Recipe.find(params[:id])
+  
+    if @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe), notice: 'Recipe was successfully updated.'
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     Recipe.find(params[:id]).destroy
     redirect_to recipes_path
   end
 
-  def update
+  def updatePrivacy
     @recipe = Recipe.find(params[:id])
     @recipe.toggle!(:public)
-    return unless @recipe.save
-
-    redirect_to recipe_path, notice: 'Recipe privacy updated.'
+    if @recipe.save
+      redirect_to recipe_path(@recipe), notice: 'Recipe privacy updated.'
+    else
+      render 'edit'
+    end
   end
 
   def public_recipes

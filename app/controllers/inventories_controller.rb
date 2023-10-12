@@ -1,5 +1,11 @@
 class InventoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_ability
+
+  def set_ability
+    @ability = Ability.new(current_user)
+  end
+  
   def new; end
 
   def index
