@@ -1,123 +1,145 @@
 <nav
-  class="relative flex w-full flex-nowrap items-center justify-between bg-neutral-800 py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 lg:flex-wrap lg:justify-start lg:py-4"
-  data-te-navbar-ref>
-  <div class="flex w-full flex-wrap items-center justify between px-3">
-    <!-- Hamburger button for mobile view -->
-    <button
-      class="block border-0 bg-transparent px-2 text-neutral-300 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
-      type="button"
-      data-te-collapse-init
-      data-te-target="#navbarSupportedContent10"
-      aria-controls="navbarSupportedContent10"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
-      <!-- Hamburger icon -->
-      <span class="[&>svg]:w-7">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          class="h-7 w-7">
-          <path
-            fill-rule="evenodd"
-            d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75.75.75.75z"
-            clip-rule="evenodd" />
-        </svg>
-      </span>
-    </button>
+  class="relative flex w-full flex-nowrap items-center justify-between bg-neutral-800 py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-700 lg:flex-wrap lg:justify-start lg:py-4 bgcolor"
+  data-te-navbar-ref
+>
+  <button
+    class="block border-0 bg-transparent px-2 text-neutral-300 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden hamburger-button"
+    type="button"
+    data-te-collapse-init
+    data-te-target="#navbarSupportedContent9"
+    aria-controls="navbarSupportedContent9"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="w-7">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        class="h-7 w-7"
+      >
+        <path
+          d="M3 12h18M3 6h18M3 18h18"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+  </button>
 
-    <!-- Collapsible navbar container -->
-    <div
-      class="!visible mt-2 hidden flex-grow basis-[100%] items-center lg:mt-0 lg:!flex lg:basis-auto"
-      id="navbarSupportedContent10"
-      data-te-collapse-item>
-      <!-- Left links -->
-      <ul
-        class="list-style-none mr-auto flex flex-col pl-0 lg:mt-1 lg:flex-row"
-        data-te-navbar-nav-ref>
-        <!-- Home link -->
-        <li
-          class="my-4 pl-2 lg:my-0 lg:pl-2 lg:pr-1"
-          data-te-nav-item-ref>
-          <a
-            class="text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-            aria-current="page"
-            href="<%= root_path %>">Home</a>
-        </li>
-        <!-- Add Food link (conditionally shown for authenticated users) -->
-        <% if user_signed_in? %>
-          <li
-            class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-            data-te-nav-item-ref>
-            <a
-              class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-              href="<%= new_food_path %>"
-              data-te-nav-link-ref
-              >Add Food</a>
-          </li>
-        <% end %>
+  <button
+    class="block border-0 bg-transparent px-2 text-neutral-300 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden close-button"
+    type="button"
+    onclick="closeMenu()"
+    style="display: none; position: absolute; top: 10px; left: 10px"
+  >
+    <span class="w-7">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        class="h-7 w-7"
+      >
+        <path
+          d="M6 18L18 6M6 6l12 12"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+  </button>
 
-        <!-- Add Recipes link (conditionally shown for authenticated users) -->
-        <% if user_signed_in? %>
-          <li
-            class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-            data-te-nav-item-ref>
-            <a
-              class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-              href="<%= recipes_path %>"
-              data-te-nav-link-ref
-              >Recipes</a>
-          </li>
-        <% end %>
-        <!-- Add Inventory link (conditionally shown for authenticated users) -->
-        <% if user_signed_in? %>
-          <li
-            class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-            data-te-nav-item-ref>
-            <a
-              class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-              href="<%= inventories_path %>"
-              data-te-nav-link-ref
-              >Inventories</a>
-          </li>
-        <% end %>
-        <!-- Register link (conditionally shown for unauthenticated users) -->
-        <% unless user_signed_in? %>
-        <li
-          class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-          data-te-nav-item-ref>
-          <a
-            class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-            href="<%= new_user_registration_path %>"
-            data-te-nav-link-ref
-            >Register</a>
-        </li>
-        <% end %>
-        <!-- Log in link (conditionally shown for unauthenticated users) -->
-        <% unless user_signed_in? %>
-        <li
-          class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-          data-te-nav-item-ref>
-          <a
-            class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-            href="<%= new_user_session_path %>"
-            data-te-nav-link-ref
-            >Log in</a>
-        </li>
-        <% end %>
-        <!-- Log out link (conditionally shown for authenticated users) -->
-        <% if user_signed_in? %>
-          <li
-            class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1"
-            data-te-nav-item-ref>
-            <a
-              class="p-0 text-neutral-300 transition duration-200 hover:text-neutral-200 hover:ease-in-out focus:text-neutral-200 disabled:text-black/30 motion-reduce:transition-none lg:px-2 [&.active]:text-black/90 [&.active]:text-neutral-200"
-              href="<%= users_sign_out_path %>"
-              data-te-nav-link-ref
-              >Log out</a>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+  <div
+    id="navbarSupportedContent9"
+    class="mt-5 ml-16 hidden lg:ml-0 flex-grow basis-[100%] items-center lg:mt-0 lg:!flex lg:basis-auto lg:hidden"
+  >
+    <ul
+      class="list-style-none mx-auto flex flex-col pl-0 lg:mt-1 lg:flex-row justify-center"
+      data-te-navbar-nav-ref
+    >
+      <li class="my-4 lg:my-0 lg:pr-1" data-te-nav-item-ref>
+        <a
+          class="hover:text-neutral-200 lg:px-2 focus:text-neutral-200 <%= 'active-link' if request.path == root_path %>"
+          aria-current="page"
+          href="<%= root_path %>"
+          data-te-nav-link-ref
+          >Home</a
+        >
+      </li>
+      <% if user_signed_in? %>
+      <li class="mb-4 lg:mb-0 lg:pr-1" data-te-nav-item-ref>
+        <a
+          class="hover:text-neutral-200 focus:text-neutral-200 lg:px-2"
+          href="<%= new_food_path %>"
+          data-te-nav-link-ref
+          >Add Food</a
+        >
+      </li>
+      <% end %> <% if user_signed_in? %>
+      <li class="mb-4 lg:mb-0 lg:pr-1" data-te-nav-item-ref>
+        <a
+          class="hover:text-neutral-200 focus:text-neutral-200 lg:px-2"
+          href="<%= recipes_path %>"
+          data-te-nav-link-ref
+          >Recipes</a
+        >
+      </li>
+      <% end %> <% if user_signed_in? %>
+      <li class="mb-4 lg:mb-0 lg:pr-1" data-te-nav-item-ref>
+        <a
+          class="hover:text-neutral-200 focus:text-neutral-200 lg:px-2"
+          href="<%= inventories_path %>"
+          data-te-nav-link-ref
+          >Inventories</a
+        >
+      </li>
+      <% end %> <% unless user_signed_in? %>
+      <li class="mb-4 lg:mb-0 lg:pr-1" data-te-nav-item-ref>
+        <a
+          class="hover:text-neutral-200 focus:text-neutral-200 lg:px-2"
+          href="<%= new_user_registration_path %>"
+          data-te-nav-link-ref
+          >Register</a
+        >
+      </li>
+      <% end %> <% unless user_signed_in? %>
+      <li class="mb-4 lg:mb-0 lg:pr-1" data-te-nav-item-ref>
+        <a
+          class="hover:text-neutral-200 focus:text-neutral-200 lg:px-2"
+          href="<%= new_user_session_path %>"
+          data-te-nav-link-ref
+          >Log in</a
+        >
+      </li>
+      <% end %> <% if user_signed_in? %>
+      <li class="mb-4 lg:mb-0 lg:pr-1" data-te-nav-item-ref>
+        <a
+          class="hover:text-neutral-200 focus:text-neutral-200 lg:px-2"
+          href="<%= users_sign_out_path %>"
+          data-te-nav-link-ref
+          >Log out</a
+        >
+      </li>
+      <% end %>
+    </ul>
   </div>
 </nav>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const currentPath = "<%= request.path %>";
+    const navLinks = document.querySelectorAll("[data-te-nav-link-ref]");
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active-link");
+
+      if (link.getAttribute("href") === currentPath) {
+        link.classList.add("active-link");
+      }
+    });
+  });
+</script>
