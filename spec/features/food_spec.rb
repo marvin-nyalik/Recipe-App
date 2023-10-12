@@ -23,7 +23,7 @@ RSpec.describe 'Food management', type: :feature do
     fill_in 'measurement_unit', with: 'Grams'
     fill_in 'price', with: 10
     click_button 'Add Food'
-    
+
     expect(page).to have_text('Food successfully added')
   end
 end
