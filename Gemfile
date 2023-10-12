@@ -70,11 +70,7 @@ group :development do
   # gem "spring"
 end
 gem 'rspec', '~> 3.12'
-
-gem 'tailwindcss-rails', '~> 2.0'
-
 gem 'htmlbeautifier', '~> 1.4'
-
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
