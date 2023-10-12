@@ -9,8 +9,8 @@ RSpec.describe InventoryFood, type: :model do
   it 'requires quantity to be a non-negative integer' do
     inventory_food = FactoryBot.build(:inventory_food, quantity: -1)
     expect(inventory_food).to_not be_valid
-  
-    inventory_food = FactoryBot.build(:inventory_food, quantity: 5)  # Adjust the value as needed
+
+    inventory_food = FactoryBot.build(:inventory_food, quantity: 5) # Adjust the value as needed
     expect(inventory_food).to be_valid
   end
 
@@ -18,7 +18,7 @@ RSpec.describe InventoryFood, type: :model do
     inventory_food = FactoryBot.build(:inventory_food, quantity: -1)
     expect(inventory_food).to_not be_valid
 
-    inventory_food = FactoryBot.build(:inventory_food, quantity: 5)  # Adjust the value as needed
+    inventory_food = FactoryBot.build(:inventory_food, quantity: 5) # Adjust the value as needed
     expect(inventory_food).to be_valid
   end
 
