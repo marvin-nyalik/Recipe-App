@@ -69,6 +69,12 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+gem 'rspec', '~> 3.12'
+
+gem 'tailwindcss-rails', '~> 2.0'
+
+gem 'htmlbeautifier', '~> 1.4'
+
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
