@@ -181,7 +181,7 @@ it will run the the server on ```localhost:3000```
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/HtetWaiYan7191/issues).
+Feel free to check the [issues page](https://github.com/marvin-nyalik/RecipeApp/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
