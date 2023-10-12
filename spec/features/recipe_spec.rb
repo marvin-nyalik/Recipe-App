@@ -28,7 +28,7 @@ RSpec.describe 'Recipe management', type: :feature do
     within('form') do
       click_button 'Add Recipe'
     end
-    
+
     sleep(0.05)
     expect(page).to have_text('Recipe was successfully created.')
     expect(page).to have_text('Welcome To Recipe Page')
@@ -80,16 +80,13 @@ RSpec.describe 'Recipe management', type: :feature do
     sleep(0.05)
     expect(page).to have_text('Recipe was successfully created.')
 
-    # sleep(0.5)
     visit recipes_path
 
     click_link 'Apple Pie'
-    # sleep(1)
     click_link 'Add Ingredient'
-    # sleep(2)
     select Food.first.name, from: 'recipe_food[food_id]'
 
-    fill_in 'recipe_food[quantity]', with: 5 # Change 'quantity' to the actual name of your quantity field
+    fill_in 'recipe_food[quantity]', with: 5
 
     within('form') do
       click_button 'Create Recipe Food'
@@ -97,6 +94,5 @@ RSpec.describe 'Recipe management', type: :feature do
 
     sleep(1)
     expect(page).to have_text('Recipe Food was successfully created')
-    # sleep(3)
   end
 end

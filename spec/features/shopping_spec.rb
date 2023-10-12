@@ -28,9 +28,7 @@ RSpec.describe 'Shopping list generator ', type: :feature do
     fill_in 'name', with: 'Inventory 1'
     fill_in 'description', with: 'Invent 1 desc'
     click_button 'Create Inventory'
-    sleep(0.5)
-    expect(page).to have_text('Inventory successfully added')
-    # sleep(0.5)
+
     visit new_recipe_path
     fill_in 'recipe[name]', with: 'Apple Pie'
     fill_in 'recipe[preparation_time]', with: 2
@@ -44,7 +42,6 @@ RSpec.describe 'Shopping list generator ', type: :feature do
     expect(page).to have_text('Recipe was successfully created.')
 
     click_link 'Apple Pie'
-    # sleep(1)
     click_button 'Generate Shopping List'
 
     select(Inventory.first.name, from: 'Inventory')

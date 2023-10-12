@@ -14,11 +14,12 @@ RSpec.describe 'Food management', type: :feature do
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: 'password123'
     click_button 'Log in'
-    sleep(0.05)
+    sleep(1)
   end
 
   it 'allows a user to create a food' do
     visit new_food_path
+
     fill_in 'name', with: 'Apple'
     fill_in 'measurement_unit', with: 'Grams'
     fill_in 'price', with: 10
