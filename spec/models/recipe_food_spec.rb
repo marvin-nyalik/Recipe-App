@@ -15,7 +15,7 @@ RSpec.describe RecipeFood, type: :model do
     recipe_food = FactoryBot.build(:recipe_food, quantity: -1)
     expect(recipe_food).to_not be_valid
 
-    recipe_food = FactoryBot.build(:recipe_food, quantity: 5)  # Adjust the value as needed
+    recipe_food = FactoryBot.build(:recipe_food, quantity: 5) # Adjust the value as needed
     expect(recipe_food).to be_valid
   end
 
