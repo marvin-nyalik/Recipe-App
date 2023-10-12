@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-  
+
     if @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe), notice: 'Recipe was successfully updated.'
     else
@@ -43,7 +43,7 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
-  def updatePrivacy
+  def update_privacy
     @recipe = Recipe.find(params[:id])
     @recipe.toggle!(:public)
     if @recipe.save

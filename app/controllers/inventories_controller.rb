@@ -5,7 +5,7 @@ class InventoriesController < ApplicationController
   def set_ability
     @ability = Ability.new(current_user)
   end
-  
+
   def new; end
 
   def index
