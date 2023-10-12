@@ -139,7 +139,7 @@ to use this project:
   rails tailwindcss:watch
 ```
 
-it will run the the server on ```localhost:3000```
+it will run the server on ```localhost:3000```
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
