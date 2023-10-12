@@ -20,8 +20,8 @@ RSpec.describe 'Shopping list generator ', type: :feature do
     fill_in 'price', with: 10
     click_button 'Add Food'
 
-    expect(page).to have_text('Food successfully added')
     sleep(1)
+    expect(page).to have_text('Food successfully added')
 
     visit new_inventory_path
 
@@ -30,24 +30,27 @@ RSpec.describe 'Shopping list generator ', type: :feature do
     click_button 'Create Inventory'
     sleep(0.5)
     expect(page).to have_text('Inventory successfully added')
-    sleep(0.5)
+    # sleep(0.5)
     visit new_recipe_path
     fill_in 'recipe[name]', with: 'Apple Pie'
     fill_in 'recipe[preparation_time]', with: 2
     fill_in 'recipe[cooking_time]', with: 2
     fill_in 'recipe[description]', with: 'Pie with apples'
 
-    click_button 'Create Recipe'
-    expect(page).to have_text('Recipe was successfully created.')
+    within('form') do
+      click_button 'Add Recipe'
+    end
     sleep(0.5)
+    expect(page).to have_text('Recipe was successfully created.')
 
     click_link 'Apple Pie'
-    sleep(1)
-    click_button 'Generate shopping list'
+    # sleep(1)
+    click_button 'Generate Shopping List'
 
-    sleep(1)
     select(Inventory.first.name, from: 'Inventory')
-    click_button 'Generate'
+    within('form#shopping-list-form') do
+      click_button 'Generate'
+    end
     sleep(3)
     expect(page).to have_text('Shopping List')
   end

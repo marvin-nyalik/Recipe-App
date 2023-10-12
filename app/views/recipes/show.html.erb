@@ -39,7 +39,7 @@
             <button class="bg-red-500 text-white px-4 py-2 rounded-full hover-bg-red-600" id="close-popup">X</button>
             <h2 class="text-2xl font-semibold mt-4">Generate Shopping List</h2>
             <p>Choose an inventory to use</p>
-            <%= form_tag(shopping_list_path, method: :get) do %>
+            <%= form_tag(shopping_list_path, method: :get, id: 'shopping-list-form') do %>
               <%= hidden_field_tag :recipe_id, @recipe.id %>
               <div class="field mt-4">
                 <%= label_tag :inventory_id, "Select Inventory", class: "text-lg font-medium" %>

@@ -9,8 +9,8 @@ RSpec.describe 'Inventory management', type: :feature do
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: 'password123'
     click_button 'Log in'
+    
     sleep(1)
-
     expect(page).to have_content('Signed in successfully.')
   end
 
@@ -31,6 +31,7 @@ RSpec.describe 'Inventory management', type: :feature do
     fill_in 'name', with: 'Inventory 1'
     fill_in 'description', with: 'Invent 1 desc'
     click_button 'Create Inventory'
+
     sleep(0.5)
     visit inventories_path
     within('form') do
@@ -47,8 +48,8 @@ RSpec.describe 'Inventory management', type: :feature do
     fill_in 'price', with: 10
     click_button 'Add Food'
 
-    expect(page).to have_text('Food successfully added')
     sleep(1)
+    expect(page).to have_text('Food successfully added')
 
     visit new_inventory_path
 
@@ -56,14 +57,15 @@ RSpec.describe 'Inventory management', type: :feature do
     fill_in 'description', with: 'Invent 1 desc'
 
     click_button 'Create Inventory'
+
     sleep(0.5)
     expect(page).to have_text('Inventory successfully added')
 
-    sleep(0.5)
+    # sleep(0.5)
     visit inventories_path
 
     click_link 'Inventory 1'
-    sleep(1)
+    # sleep(1)
     click_link 'Add Inventory Food'
     sleep(2)
     select Food.first.name, from: 'inventory_food[food_id]'
@@ -76,6 +78,6 @@ RSpec.describe 'Inventory management', type: :feature do
 
     sleep(1)
     expect(page).to have_text('Food added to inventory')
-    sleep(3)
+    # sleep(3)
   end
 end
