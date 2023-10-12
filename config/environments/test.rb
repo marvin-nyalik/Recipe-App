@@ -4,6 +4,7 @@ require "active_support/core_ext/integer/time"
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
 # and recreated between test runs. Don't rely on the data there!
+# config/environments/test.rb
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -61,4 +62,5 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
